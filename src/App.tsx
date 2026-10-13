@@ -113,11 +113,16 @@ function GasDeliveryApp() {
   };
 
   // Helper para invalidar e recarregar
-  const invalidateAndRefresh = () => {
+  const invalidateAndRefresh = async () => {
     qc.invalidateQueries({ queryKey: ['pedidos'] });
     qc.invalidateQueries({ queryKey: ['entregadores'] });
     qc.invalidateQueries({ queryKey: ['entregadores-ativos'] });
     qc.invalidateQueries({ queryKey: ['caixa-do-dia'] });
+    await Promise.all([
+      refetchPedidos(),
+      refetchEntregadores(),
+      refetchCaixa(),
+    ]);
   };
 
   // ---- AÇÕES DO FLUXO DE NEGÓCIOS ----
@@ -274,12 +279,18 @@ function GasDeliveryApp() {
   // Entregadores handlers
   const handleCadastrarEntregador = async (data: { nome: string; telefone: string }) => {
     try {
-      await apiService.cadastrarEntregador(data);
+      const novo = await apiService.cadastrarEntregador(data);
+      qc.setQueryData<Entregador[]>(['entregadores'], (old) =>
+        old ? [...old, novo] : [novo]
+      );
+      qc.setQueryData<Entregador[]>(['entregadores-ativos'], (old) =>
+        old ? [...old, novo] : [novo]
+      );
       toast.success(
         `Entregador ${data.nome} cadastrado com sucesso!`,
         'Cadastro Realizado'
       );
-      invalidateAndRefresh();
+      await invalidateAndRefresh();
     } catch (err) {
       toast.error(getErrorMessage(err), 'Erro no Cadastro');
       throw err;
@@ -296,11 +307,17 @@ function GasDeliveryApp() {
       action: async () => {
         try {
           await apiService.ativarEntregador(entregador.id);
+          qc.setQueryData<Entregador[]>(['entregadores'], (old) =>
+            old ? old.map((e) => (e.id === entregador.id ? { ...e, ativo: true } : e)) : []
+          );
+          qc.setQueryData<Entregador[]>(['entregadores-ativos'], (old) =>
+            old ? (old.some((e) => e.id === entregador.id) ? old : [...old, { ...entregador, ativo: true }]) : [{ ...entregador, ativo: true }]
+          );
           toast.success(
             `Entregador ${entregador.nome} ativado e disponível para despachos!`,
             'Entregador Ativado'
           );
-          invalidateAndRefresh();
+          await invalidateAndRefresh();
         } catch (err) {
           toast.error(getErrorMessage(err), 'Erro ao Ativar');
         }
@@ -318,11 +335,17 @@ function GasDeliveryApp() {
       action: async () => {
         try {
           await apiService.desativarEntregador(entregador.id);
+          qc.setQueryData<Entregador[]>(['entregadores'], (old) =>
+            old ? old.map((e) => (e.id === entregador.id ? { ...e, ativo: false } : e)) : []
+          );
+          qc.setQueryData<Entregador[]>(['entregadores-ativos'], (old) =>
+            old ? old.filter((e) => e.id !== entregador.id) : []
+          );
           toast.info(
             `Entregador ${entregador.nome} foi inativado.`,
             'Entregador Inativado'
           );
-          invalidateAndRefresh();
+          await invalidateAndRefresh();
         } catch (err) {
           toast.error(getErrorMessage(err), 'Erro ao Inativar');
         }
@@ -352,11 +375,20 @@ function GasDeliveryApp() {
       action: async () => {
         try {
           await apiService.excluirEntregador(entregador.id);
+          
+          // Remove imediatamente da tela/estado local
+          qc.setQueryData<Entregador[]>(['entregadores'], (old) =>
+            old ? old.filter((e) => e.id !== entregador.id) : []
+          );
+          qc.setQueryData<Entregador[]>(['entregadores-ativos'], (old) =>
+            old ? old.filter((e) => e.id !== entregador.id) : []
+          );
+
           toast.success(
             `Entregador ${entregador.nome} excluído com sucesso!`,
             'Cadastro Excluído'
           );
-          invalidateAndRefresh();
+          await invalidateAndRefresh();
         } catch (err) {
           toast.error(getErrorMessage(err), 'Erro ao Excluir');
         }
