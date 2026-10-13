@@ -64,73 +64,73 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
         </div>
 
         {/* Análise de CPF */}
-        <div className="bg-white p-6 rounded-2xl border border-amber-200 shadow-xs flex items-start justify-between">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-amber-800">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Triagem de CPF
             </span>
-            <div className="text-3xl font-black text-amber-700 mt-2">{pedidosCpf.length}</div>
-            <p className="text-xs text-amber-700 mt-1">Gás do Povo aguardando aprovação</p>
+            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosCpf.length}</div>
+            <p className="text-xs text-slate-500 mt-1">Gás do Povo aguardando aprovação</p>
           </div>
-          <div className="p-3 bg-amber-100 text-amber-700 rounded-xl">
+          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
             <AlertCircle className="w-6 h-6" />
           </div>
         </div>
 
         {/* Prontos p/ Despacho */}
-        <div className="bg-white p-6 rounded-2xl border border-blue-200 shadow-xs flex items-start justify-between">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-800">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Prontos para Despacho
             </span>
-            <div className="text-3xl font-black text-blue-700 mt-2">{pedidosPendentes.length}</div>
-            <p className="text-xs text-blue-600 mt-1">Aguardando vincular entregador</p>
+            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosPendentes.length}</div>
+            <p className="text-xs text-slate-500 mt-1">Aguardando vincular entregador</p>
           </div>
-          <div className="p-3 bg-blue-100 text-blue-700 rounded-xl">
+          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
             <Clock className="w-6 h-6" />
           </div>
         </div>
 
         {/* Na Rua / Em Rota */}
-        <div className="bg-white p-6 rounded-2xl border border-purple-200 shadow-xs flex items-start justify-between">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-purple-800">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Entregas em Rota
             </span>
-            <div className="text-3xl font-black text-purple-700 mt-2">{pedidosNaRua.length}</div>
-            <p className="text-xs text-purple-600 mt-1">Na rua com os motoboys</p>
+            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosNaRua.length}</div>
+            <p className="text-xs text-slate-500 mt-1">Na rua com os motoboys</p>
           </div>
-          <div className="p-3 bg-purple-100 text-purple-700 rounded-xl">
+          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
             <Bike className="w-6 h-6" />
           </div>
         </div>
 
         {/* Pedidos Entregues */}
-        <div className="bg-white p-6 rounded-2xl border border-emerald-200 shadow-xs flex items-start justify-between">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Entregas Concluídas
             </span>
-            <div className="text-3xl font-black text-emerald-700 mt-2">{pedidosEntregues.length}</div>
-            <p className="text-xs text-emerald-600 mt-1">Botijões entregues com sucesso</p>
+            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosEntregues.length}</div>
+            <p className="text-xs text-slate-500 mt-1">Botijões entregues com sucesso</p>
           </div>
-          <div className="p-3 bg-emerald-100 text-emerald-700 rounded-xl">
+          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
             <CheckCircle className="w-6 h-6" />
           </div>
         </div>
 
         {/* Faturamento */}
-        <div className="bg-white p-6 rounded-2xl border border-green-300 shadow-xs flex items-start justify-between">
+        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-green-800">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
               Faturamento Concluído
             </span>
-            <div className="text-3xl font-black text-green-700 mt-2">
+            <div className="text-3xl font-black text-slate-900 mt-2">
               {formatCurrency(faturamentoTotal)}
             </div>
-            <p className="text-xs text-green-600 mt-1">Total recebido dos pedidos entregues</p>
+            <p className="text-xs text-slate-500 mt-1">Total recebido dos pedidos entregues</p>
           </div>
-          <div className="p-3 bg-green-100 text-green-700 rounded-xl">
+          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
             <DollarSign className="w-6 h-6" />
           </div>
         </div>
