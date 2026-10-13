@@ -306,6 +306,16 @@ export const apiService = {
     await axiosClient.put(`/api/entregadores/${id}/desativar`);
   },
 
+  async excluirEntregador(id: number): Promise<void> {
+    if (isMockEnabled()) {
+      await new Promise((r) => setTimeout(r, 200));
+      const entregadores = getStoredMockEntregadores().filter((e) => e.id !== id);
+      saveStoredMockEntregadores(entregadores);
+      return;
+    }
+    await axiosClient.delete(`/api/entregadores/${id}`);
+  },
+
   // Caixa
   async getCaixaDoDia(): Promise<Record<string, number>> {
     if (isMockEnabled()) {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AlertTriangle, CheckCircle2, XCircle, Check, Power } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, XCircle, Check, Power, Trash2 } from 'lucide-react';
 
 export type ActionModalType =
   | 'aprovar-cpf'
@@ -7,7 +7,8 @@ export type ActionModalType =
   | 'cancelar'
   | 'entregue'
   | 'ativar-entregador'
-  | 'inativar-entregador';
+  | 'inativar-entregador'
+  | 'excluir-entregador';
 
 interface ConfirmActionModalProps {
   isOpen: boolean;
@@ -84,6 +85,12 @@ export const ConfirmActionModal: React.FC<ConfirmActionModalProps> = ({
       bgIcon: 'bg-rose-100',
       btnColor: 'bg-rose-600 hover:bg-rose-700 text-white shadow-rose-600/20',
       defaultConfirm: 'Sim, Inativar Entregador',
+    },
+    'excluir-entregador': {
+      icon: <Trash2 className="w-8 h-8 text-rose-600" />,
+      bgIcon: 'bg-rose-100',
+      btnColor: 'bg-rose-600 hover:bg-rose-700 text-white shadow-rose-600/20',
+      defaultConfirm: 'Sim, Excluir Cadastro',
     },
   }[type];
 

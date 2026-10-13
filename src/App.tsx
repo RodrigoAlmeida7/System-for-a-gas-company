@@ -330,6 +330,40 @@ function GasDeliveryApp() {
     });
   };
 
+  const handleExcluirEntregador = (entregador: Entregador) => {
+    const pedidosAtivos = pedidos.filter(
+      (p) => p.status === 'DESPACHADO' && p.entregador?.id === entregador.id
+    );
+
+    if (pedidosAtivos.length > 0) {
+      toast.warning(
+        `Não é possível excluir ${entregador.nome} pois ele possui ${pedidosAtivos.length} pedido(s) em rota na rua. Finalize ou cancele as entregas antes de excluí-lo.`,
+        'Entregas em Andamento'
+      );
+      return;
+    }
+
+    setConfirmModal({
+      isOpen: true,
+      type: 'excluir-entregador',
+      title: 'Excluir Cadastro do Entregador?',
+      description: `Atenção: Esta ação é definitiva e removerá "${entregador.nome}" do sistema. Se desejar apenas pausar temporariamente as corridas dele, prefira usar a opção "Inativar".`,
+      confirmText: 'Sim, Excluir Cadastro',
+      action: async () => {
+        try {
+          await apiService.excluirEntregador(entregador.id);
+          toast.success(
+            `Entregador ${entregador.nome} excluído com sucesso!`,
+            'Cadastro Excluído'
+          );
+          invalidateAndRefresh();
+        } catch (err) {
+          toast.error(getErrorMessage(err), 'Erro ao Excluir');
+        }
+      },
+    });
+  };
+
   const handleSwitchToMock = () => {
     setMockEnabled(true);
     refreshAll();
@@ -431,6 +465,7 @@ function GasDeliveryApp() {
                 onOpenCadastrarModal={() => setCadastrarEntregadorOpen(true)}
                 onAtivar={handleAtivarEntregador}
                 onDesativar={handleDesativarEntregador}
+                onExcluir={handleExcluirEntregador}
               />
             )}
 

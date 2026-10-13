@@ -9,6 +9,7 @@ import {
   Wallet,
   ShieldCheck,
   ShieldAlert,
+  Trash2,
 } from 'lucide-react';
 
 interface EntregadoresViewProps {
@@ -16,6 +17,7 @@ interface EntregadoresViewProps {
   onOpenCadastrarModal: () => void;
   onAtivar: (entregador: Entregador) => void;
   onDesativar: (entregador: Entregador) => void;
+  onExcluir: (entregador: Entregador) => void;
 }
 
 export const EntregadoresView: React.FC<EntregadoresViewProps> = ({
@@ -23,6 +25,7 @@ export const EntregadoresView: React.FC<EntregadoresViewProps> = ({
   onOpenCadastrarModal,
   onAtivar,
   onDesativar,
+  onExcluir,
 }) => {
   const totalAtivos = entregadores.filter((e) => e.ativo).length;
   const totalInativos = entregadores.length - totalAtivos;
@@ -175,31 +178,41 @@ export const EntregadoresView: React.FC<EntregadoresViewProps> = ({
                 </div>
               </div>
 
-              {/* Botão de Ativação / Desativação */}
-              <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+              {/* Botão de Ativação / Desativação e Exclusão */}
+              <div className="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
                 <span className="text-[11px] text-slate-400">
-                  {entregador.ativo ? 'Disponível p/ despachos' : 'Bloqueado p/ despachos'}
+                  {entregador.ativo ? 'Disponível' : 'Bloqueado'}
                 </span>
 
-                {entregador.ativo ? (
+                <div className="flex items-center gap-1.5">
+                  {entregador.ativo ? (
+                    <button
+                      onClick={() => onDesativar(entregador)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-xl transition active:scale-95"
+                      title="Inativar entregador"
+                    >
+                      <Power className="w-3.5 h-3.5" />
+                      <span>Inativar</span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => onAtivar(entregador)}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition active:scale-95"
+                      title="Ativar entregador"
+                    >
+                      <Power className="w-3.5 h-3.5" />
+                      <span>Ativar</span>
+                    </button>
+                  )}
+
                   <button
-                    onClick={() => onDesativar(entregador)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl transition active:scale-95"
-                    title="Inativar entregador"
+                    onClick={() => onExcluir(entregador)}
+                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition"
+                    title="Excluir cadastro do entregador"
                   >
-                    <Power className="w-3.5 h-3.5" />
-                    <span>Inativar</span>
+                    <Trash2 className="w-4 h-4" />
                   </button>
-                ) : (
-                  <button
-                    onClick={() => onAtivar(entregador)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition active:scale-95"
-                    title="Ativar entregador"
-                  >
-                    <Power className="w-3.5 h-3.5" />
-                    <span>Ativar</span>
-                  </button>
-                )}
+                </div>
               </div>
             </div>
           );
