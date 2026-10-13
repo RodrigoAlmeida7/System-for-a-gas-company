@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Bike, X, User, Phone, CheckCircle } from 'lucide-react';
+import { useLockBodyScroll } from '../../utils/useLockBodyScroll';
 
 interface CadastrarEntregadorModalProps {
   isOpen: boolean;
@@ -12,6 +13,8 @@ export const CadastrarEntregadorModal: React.FC<CadastrarEntregadorModalProps> =
   onClose,
   onConfirm,
 }) => {
+  useLockBodyScroll(isOpen);
+
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
   const [submitting, setSubmitting] = useState(false);

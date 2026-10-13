@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Settings, X, Globe, Database, CheckCircle, RefreshCw } from 'lucide-react';
 import { getApiBaseUrl, setApiBaseUrl, isMockEnabled, setMockEnabled, resetMockData } from '../../services/api';
+import { useLockBodyScroll } from '../../utils/useLockBodyScroll';
 
 interface ApiConfigModalProps {
   isOpen: boolean;
@@ -13,6 +14,8 @@ export const ApiConfigModal: React.FC<ApiConfigModalProps> = ({
   onClose,
   onSaved,
 }) => {
+  useLockBodyScroll(isOpen);
+
   const [url, setUrl] = useState(getApiBaseUrl());
   const [mockMode, setMockMode] = useState(isMockEnabled());
   const [savedSuccess, setSavedSuccess] = useState(false);

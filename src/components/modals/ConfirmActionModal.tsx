@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AlertTriangle, CheckCircle2, XCircle, Check, Power, Trash2 } from 'lucide-react';
+import { useLockBodyScroll } from '../../utils/useLockBodyScroll';
 
 export type ActionModalType =
   | 'aprovar-cpf'
@@ -35,6 +36,8 @@ export const ConfirmActionModal: React.FC<ConfirmActionModalProps> = ({
   onClose,
   onConfirm,
 }) => {
+  useLockBodyScroll(isOpen);
+
   const [submitting, setSubmitting] = useState(false);
 
   if (!isOpen) return null;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { Pedido, Entregador } from '../../types';
 import { formatCurrency, formatPhone } from '../../utils/formatters';
 import { Bike, X, MapPin, User, CheckCircle, AlertCircle } from 'lucide-react';
+import { useLockBodyScroll } from '../../utils/useLockBodyScroll';
 
 interface DespacharModalProps {
   pedido: Pedido | null;
@@ -18,6 +19,8 @@ export const DespacharModal: React.FC<DespacharModalProps> = ({
   onClose,
   onConfirm,
 }) => {
+  useLockBodyScroll(!!pedido);
+
   const [selectedEntregadorId, setSelectedEntregadorId] = useState<number | null>(
     entregadoresAtivos.length > 0 ? entregadoresAtivos[0].id : null
   );
