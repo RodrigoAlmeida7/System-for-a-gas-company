@@ -19,6 +19,19 @@ export const CadastrarEntregadorModal: React.FC<CadastrarEntregadorModalProps> =
 
   if (!isOpen) return null;
 
+  const handleNomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    if (/\d/.test(val)) {
+      setErrorMsg('No campo Nome Completo não é permitida a digitação de números.');
+      setNome(val.replace(/\d/g, ''));
+      return;
+    }
+    if (errorMsg) {
+      setErrorMsg('');
+    }
+    setNome(val);
+  };
+
   // Máscara simples para telefone brasileiro: (XX) 9XXXX-XXXX
   const handleTelefoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value.replace(/\D/g, '');
@@ -37,8 +50,33 @@ export const CadastrarEntregadorModal: React.FC<CadastrarEntregadorModalProps> =
     e.preventDefault();
     setErrorMsg('');
 
-    if (!nome.trim()) {
+    const nomeTrimmed = nome.trim();
+
+    if (!nomeTrimmed) {
       setErrorMsg('Por favor, informe o nome do entregador.');
+      return;
+    }
+
+    if (/\d/.test(nome)) {
+      setErrorMsg('No campo Nome Completo não é permitida a digitação de números.');
+      return;
+    }
+
+    // Validação de apenas letras e caracteres válidos de nome
+    if (!/^[a-zA-ZÀ-ÿ\s'´`^~-]+$/.test(nomeTrimmed)) {
+      setErrorMsg('O nome completo deve conter apenas letras.');
+      return;
+    }
+
+    // Validação de nome e sobrenome (mínimo duas palavras)
+    const partesNome = nomeTrimmed.split(/\s+/).filter(Boolean);
+    if (partesNome.length < 2) {
+      setErrorMsg('Por favor, informe o nome completo (nome e sobrenome, ex: Carlos Silva).');
+      return;
+    }
+
+    if (partesNome.some((parte) => parte.length < 2)) {
+      setErrorMsg('Cada parte do nome deve conter pelo menos 2 letras.');
       return;
     }
 
@@ -54,7 +92,7 @@ export const CadastrarEntregadorModal: React.FC<CadastrarEntregadorModalProps> =
     try {
       setSubmitting(true);
       await onConfirm({
-        nome: nome.trim(),
+        nome: nomeTrimmed,
         telefone: formattedToApi,
       });
       setNome('');
@@ -105,11 +143,14 @@ export const CadastrarEntregadorModal: React.FC<CadastrarEntregadorModalProps> =
                 type="text"
                 required
                 value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                placeholder="Ex: Carlos 'Veloz' Silva"
+                onChange={handleNomeChange}
+                placeholder="Ex: Carlos Silva"
                 className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:bg-white focus:border-orange-500 focus:ring-2 focus:ring-orange-500/20 outline-none transition"
               />
             </div>
+            <p className="text-[11px] text-slate-400 mt-1">
+              Informe nome e sobrenome do entregador (não são permitidos números).
+            </p>
           </div>
 
           <div>
