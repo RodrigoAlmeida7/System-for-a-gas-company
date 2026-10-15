@@ -260,8 +260,8 @@ export const PedidosTable: React.FC<PedidosTableProps> = ({
                     {/* Entregador */}
                     <td className="py-3 px-4">
                       {pedido.entregador ? (
-                        <div className="flex items-center gap-1.5 text-xs font-semibold text-purple-900">
-                          <Bike className="w-3.5 h-3.5 text-purple-600" />
+                        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-800">
+                          <Bike className="w-3.5 h-3.5 text-slate-500" />
                           <span>{pedido.entregador.nome}</span>
                         </div>
                       ) : (

@@ -60,7 +60,7 @@ export const EntregadoresView: React.FC<EntregadoresViewProps> = ({
       {/* KPI stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-4">
-          <div className="p-3 bg-emerald-100 text-emerald-700 rounded-xl">
+          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
             <ShieldCheck className="w-6 h-6" />
           </div>
           <div>
@@ -68,7 +68,7 @@ export const EntregadoresView: React.FC<EntregadoresViewProps> = ({
               Entregadores Ativos
             </div>
             <div className="text-2xl font-black text-slate-900">{totalAtivos}</div>
-            <div className="text-[11px] text-emerald-600 font-medium">
+            <div className="text-[11px] text-slate-500 font-medium">
               Prontos para receber despacho
             </div>
           </div>
@@ -90,17 +90,17 @@ export const EntregadoresView: React.FC<EntregadoresViewProps> = ({
         </div>
 
         <div className="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs flex items-center gap-4">
-          <div className="p-3 bg-blue-100 text-blue-700 rounded-xl">
+          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
             <Wallet className="w-6 h-6" />
           </div>
           <div>
             <div className="text-xs text-slate-500 font-semibold uppercase">
               Caixa Físico Acumulado
             </div>
-            <div className="text-2xl font-black text-blue-700">
+            <div className="text-2xl font-black text-slate-900">
               {formatCurrency(totalCaixaGeral)}
             </div>
-            <div className="text-[11px] text-blue-600 font-medium">
+            <div className="text-[11px] text-slate-500 font-medium">
               Dinheiro e Cartão na rua
             </div>
           </div>

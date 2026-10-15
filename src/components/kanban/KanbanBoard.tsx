@@ -133,26 +133,26 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
       {/* Grid de Colunas Kanban */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 items-start">
         {/* Coluna 1: Análise de CPF */}
-        <div className="bg-slate-100/70 rounded-2xl p-3 border border-amber-200/60 shadow-xs flex flex-col min-h-[580px]">
-          <div className="flex items-center justify-between pb-3 mb-3 border-b border-amber-200/80">
+        <div className="bg-slate-100/70 rounded-2xl p-3 border border-slate-200 shadow-xs flex flex-col min-h-[580px]">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-amber-500 text-white flex items-center justify-center shadow-xs">
+              <div className="w-7 h-7 rounded-lg bg-slate-700 text-white flex items-center justify-center shadow-xs">
                 <AlertCircle className="w-4 h-4" />
               </div>
               <div>
                 <h3 className="font-bold text-sm text-slate-900">Análise de CPF</h3>
-                <p className="text-[11px] text-amber-800 font-medium">Benefício Gás do Povo</p>
+                <p className="text-[11px] text-slate-500 font-medium">Benefício Gás do Povo</p>
               </div>
             </div>
-            <span className="w-6 h-6 rounded-full bg-amber-200 text-amber-900 text-xs font-bold flex items-center justify-center">
+            <span className="w-6 h-6 rounded-full bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center">
               {colValidacaoCpf.length}
             </span>
           </div>
 
           <div className="space-y-3 flex-1 overflow-y-auto max-h-[720px] pr-1">
             {colValidacaoCpf.length === 0 ? (
-              <div className="h-40 flex flex-col items-center justify-center text-center p-4 rounded-xl border border-dashed border-amber-200 text-slate-400">
-                <CheckCircle2 className="w-8 h-8 text-amber-300 mb-1" />
+              <div className="h-40 flex flex-col items-center justify-center text-center p-4 rounded-xl border border-dashed border-slate-200 text-slate-400">
+                <CheckCircle2 className="w-8 h-8 text-slate-300 mb-1" />
                 <p className="text-xs font-medium">Nenhum CPF pendente de análise!</p>
               </div>
             ) : (
@@ -172,26 +172,26 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
         </div>
 
         {/* Coluna 2: Prontos p/ Despacho */}
-        <div className="bg-slate-100/70 rounded-2xl p-3 border border-blue-200/60 shadow-xs flex flex-col min-h-[580px]">
-          <div className="flex items-center justify-between pb-3 mb-3 border-b border-blue-200/80">
+        <div className="bg-slate-100/70 rounded-2xl p-3 border border-slate-200 shadow-xs flex flex-col min-h-[580px]">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-blue-600 text-white flex items-center justify-center shadow-xs">
+              <div className="w-7 h-7 rounded-lg bg-slate-700 text-white flex items-center justify-center shadow-xs">
                 <Clock className="w-4 h-4" />
               </div>
               <div>
                 <h3 className="font-bold text-sm text-slate-900">Para Despachar</h3>
-                <p className="text-[11px] text-blue-800 font-medium">Aguardando motoboy</p>
+                <p className="text-[11px] text-slate-500 font-medium">Aguardando motoboy</p>
               </div>
             </div>
-            <span className="w-6 h-6 rounded-full bg-blue-200 text-blue-900 text-xs font-bold flex items-center justify-center">
+            <span className="w-6 h-6 rounded-full bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center">
               {colProntoDespacho.length}
             </span>
           </div>
 
           <div className="space-y-3 flex-1 overflow-y-auto max-h-[720px] pr-1">
             {colProntoDespacho.length === 0 ? (
-              <div className="h-40 flex flex-col items-center justify-center text-center p-4 rounded-xl border border-dashed border-blue-200 text-slate-400">
-                <Clock className="w-8 h-8 text-blue-300 mb-1" />
+              <div className="h-40 flex flex-col items-center justify-center text-center p-4 rounded-xl border border-dashed border-slate-200 text-slate-400">
+                <Clock className="w-8 h-8 text-slate-300 mb-1" />
                 <p className="text-xs font-medium">Nenhum pedido aguardando despacho!</p>
               </div>
             ) : (
@@ -211,26 +211,26 @@ export const KanbanBoard: React.FC<KanbanBoardProps> = ({
         </div>
 
         {/* Coluna 3: Na Rua (Em Rota) */}
-        <div className="bg-slate-100/70 rounded-2xl p-3 border border-purple-200/60 shadow-xs flex flex-col min-h-[580px]">
-          <div className="flex items-center justify-between pb-3 mb-3 border-b border-purple-200/80">
+        <div className="bg-slate-100/70 rounded-2xl p-3 border border-slate-200 shadow-xs flex flex-col min-h-[580px]">
+          <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-200">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-purple-600 text-white flex items-center justify-center shadow-xs">
+              <div className="w-7 h-7 rounded-lg bg-slate-700 text-white flex items-center justify-center shadow-xs">
                 <Bike className="w-4 h-4" />
               </div>
               <div>
                 <h3 className="font-bold text-sm text-slate-900">Na Rua (Em Rota)</h3>
-                <p className="text-[11px] text-purple-800 font-medium">Com o entregador</p>
+                <p className="text-[11px] text-slate-500 font-medium">Com o entregador</p>
               </div>
             </div>
-            <span className="w-6 h-6 rounded-full bg-purple-200 text-purple-900 text-xs font-bold flex items-center justify-center">
+            <span className="w-6 h-6 rounded-full bg-slate-200 text-slate-800 text-xs font-bold flex items-center justify-center">
               {colNaRua.length}
             </span>
           </div>
 
           <div className="space-y-3 flex-1 overflow-y-auto max-h-[720px] pr-1">
             {colNaRua.length === 0 ? (
-              <div className="h-40 flex flex-col items-center justify-center text-center p-4 rounded-xl border border-dashed border-purple-200 text-slate-400">
-                <Bike className="w-8 h-8 text-purple-300 mb-1" />
+              <div className="h-40 flex flex-col items-center justify-center text-center p-4 rounded-xl border border-dashed border-slate-200 text-slate-400">
+                <Bike className="w-8 h-8 text-slate-300 mb-1" />
                 <p className="text-xs font-medium">Nenhuma entrega em rota agora.</p>
               </div>
             ) : (

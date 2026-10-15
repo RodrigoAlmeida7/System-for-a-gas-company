@@ -48,90 +48,100 @@ export const DashboardMetrics: React.FC<DashboardMetricsProps> = ({
       </div>
 
       {/* Grid de Cards de Indicadores */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Total de Pedidos */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Total de Pedidos
             </span>
-            <div className="text-3xl font-black text-slate-900 mt-2">{totalPedidos}</div>
-            <p className="text-xs text-slate-500 mt-1">Registrados no sistema hoje</p>
+            <Package className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
-            <Package className="w-6 h-6" />
+          <div className="text-3xl font-black text-slate-900">
+            {totalPedidos}
+          </div>
+          <div className="text-[11px] text-slate-500 mt-2">
+            Registrados no sistema hoje.
           </div>
         </div>
 
         {/* Análise de CPF */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Triagem de CPF
             </span>
-            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosCpf.length}</div>
-            <p className="text-xs text-slate-500 mt-1">Gás do Povo aguardando aprovação</p>
+            <AlertCircle className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
-            <AlertCircle className="w-6 h-6" />
+          <div className="text-3xl font-black text-slate-900">
+            {pedidosCpf.length}
+          </div>
+          <div className="text-[11px] text-slate-500 mt-2">
+            Gás do Povo aguardando aprovação.
           </div>
         </div>
 
         {/* Prontos p/ Despacho */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Prontos para Despacho
             </span>
-            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosPendentes.length}</div>
-            <p className="text-xs text-slate-500 mt-1">Aguardando vincular entregador</p>
+            <Clock className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
-            <Clock className="w-6 h-6" />
+          <div className="text-3xl font-black text-slate-900">
+            {pedidosPendentes.length}
+          </div>
+          <div className="text-[11px] text-slate-500 mt-2">
+            Aguardando vincular entregador.
           </div>
         </div>
 
         {/* Na Rua / Em Rota */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Entregas em Rota
             </span>
-            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosNaRua.length}</div>
-            <p className="text-xs text-slate-500 mt-1">Na rua com os motoboys</p>
+            <Bike className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
-            <Bike className="w-6 h-6" />
+          <div className="text-3xl font-black text-slate-900">
+            {pedidosNaRua.length}
+          </div>
+          <div className="text-[11px] text-slate-500 mt-2">
+            Na rua com os motoboys.
           </div>
         </div>
 
         {/* Pedidos Entregues */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Entregas Concluídas
             </span>
-            <div className="text-3xl font-black text-slate-900 mt-2">{pedidosEntregues.length}</div>
-            <p className="text-xs text-slate-500 mt-1">Botijões entregues com sucesso</p>
+            <CheckCircle className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
-            <CheckCircle className="w-6 h-6" />
+          <div className="text-3xl font-black text-slate-900">
+            {pedidosEntregues.length}
+          </div>
+          <div className="text-[11px] text-slate-500 mt-2">
+            Botijões entregues com sucesso.
           </div>
         </div>
 
         {/* Faturamento */}
-        <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex items-start justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-500">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
+            <span className="text-xs font-bold uppercase tracking-wider">
               Faturamento Concluído
             </span>
-            <div className="text-3xl font-black text-slate-900 mt-2">
-              {formatCurrency(faturamentoTotal)}
-            </div>
-            <p className="text-xs text-slate-500 mt-1">Total recebido dos pedidos entregues</p>
+            <DollarSign className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="p-3 bg-slate-100 text-slate-600 rounded-xl">
-            <DollarSign className="w-6 h-6" />
+          <div className="text-3xl font-black text-slate-900">
+            {formatCurrency(faturamentoTotal)}
+          </div>
+          <div className="text-[11px] text-slate-500 mt-2">
+            Total recebido dos pedidos entregues.
           </div>
         </div>
       </div>

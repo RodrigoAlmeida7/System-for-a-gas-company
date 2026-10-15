@@ -93,14 +93,14 @@ export const FechamentoCaixaView: React.FC<FechamentoCaixaViewProps> = ({
 
       {/* Resumo Consolidado do Dia */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-white p-5 rounded-2xl border border-emerald-200/90 shadow-xs flex flex-col justify-between">
-          <div className="flex items-center justify-between text-emerald-800 mb-2">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider">
               Total Físico (Dinheiro + Cartão)
             </span>
-            <Coins className="w-5 h-5 text-emerald-600" />
+            <Coins className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="text-3xl font-black text-emerald-700">
+          <div className="text-3xl font-black text-slate-900">
             {formatCurrency(totalFisicoGeral)}
           </div>
           <div className="text-[11px] text-slate-500 mt-2">
@@ -108,14 +108,14 @@ export const FechamentoCaixaView: React.FC<FechamentoCaixaViewProps> = ({
           </div>
         </div>
 
-        <div className="bg-white p-5 rounded-2xl border border-teal-200/90 shadow-xs flex flex-col justify-between">
-          <div className="flex items-center justify-between text-teal-800 mb-2">
+        <div className="bg-white p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-700 mb-2">
             <span className="text-xs font-bold uppercase tracking-wider">
               Recebido via PIX (Conta)
             </span>
-            <Building className="w-5 h-5 text-teal-600" />
+            <Building className="w-5 h-5 text-slate-600" />
           </div>
-          <div className="text-3xl font-black text-teal-700">
+          <div className="text-3xl font-black text-slate-900">
             {formatCurrency(totalPix)}
           </div>
           <div className="text-[11px] text-slate-500 mt-2">
@@ -177,11 +177,11 @@ export const FechamentoCaixaView: React.FC<FechamentoCaixaViewProps> = ({
                     </div>
                   </div>
 
-                  <div className="text-left sm:text-right bg-emerald-50 px-4 py-2.5 rounded-xl border border-emerald-200">
-                    <div className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">
+                  <div className="text-left sm:text-right bg-slate-50 px-4 py-2.5 rounded-xl border border-slate-200">
+                    <div className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">
                       Valor a Prestar Contas
                     </div>
-                    <div className="text-2xl font-black text-emerald-700">
+                    <div className="text-2xl font-black text-slate-900">
                       {formatCurrency(valorCaixa)}
                     </div>
                   </div>
